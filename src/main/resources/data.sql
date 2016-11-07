@@ -18,4 +18,4 @@ insert into java302.user_roles (user_id, role) values ((select id from java302.u
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'dcarter@smoothie.com'), 'USER');
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'aweston@smoothie.com'), 'USER');
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'jfredrick@smoothie.com'), 'USER');
-insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'erogers@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'erogers@smoothie.com'), 'ADMIN');

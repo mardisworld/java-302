@@ -12,7 +12,7 @@
 		<li th:text="*{lastName}"></li>
 		<li th:text="*{email}"></li>
 		<li th:text="*{phoneNumber}"></li>
-		<li><a href="/" th:href="@{|/user/${user.id}/edit|}">Edit</a></li>
+		<li th:if="${permissions.canEditUser(user.id)}"><a href="/" th:href="@{|/user/${user.id}/edit|}">Edit</a></li>
 	</ul>
 	<a href="/">Back</a>
 </body>
