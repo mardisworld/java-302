@@ -5,6 +5,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 import org.springframework.stereotype.Service;
+
+import com.users.repositories.ContactRepository;
 import com.users.repositories.UserRepository;
 import static com.users.security.Role.ADMIN;
 import static com.users.security.Role.USER;
@@ -16,6 +18,9 @@ public class PermissionService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private ContactRepository contactRepo;
 	
 	private UsernamePasswordAuthenticationToken getToken() { //method that returns type UsernamePasswordAuthenticationToken
 		return (UsernamePasswordAuthenticationToken) 
@@ -31,12 +36,19 @@ public class PermissionService {
 		}
 		return false;
 	}
+	
+	public long findCurrentUserId() {
+		return userRepo.findByEmail(getToken().getName()).get(0).getId(); // cut out from canEditUserMethod: long currentUserId = userRepo.findByEmail(getToken().getName()).get(0).getId();//finds currentUserID based on email
 
-	public boolean canEditUser(long userId) { //method that returns boolean true/false if can edit user
-		long currentUserId = userRepo.findByEmail(getToken().getName()).get(0).getId();//finds currentUserID based on email
-		return hasRole(ADMIN) || (hasRole(USER) && currentUserId == userId); //returns true if user is an ADMIN or if current userId == userID
 	}
 
+	public boolean canEditUser(long userId) { //method that returns boolean true/false if can edit user
+		return hasRole(ADMIN) || (hasRole(USER) && findCurrentUserId() == userId); //returns true if user is an ADMIN or if current userId == userID
+	}
+
+	public boolean canEditContact(long contactId) {
+		return hasRole(USER) && contactRepo.findByUserIdAndId(findCurrentUserId(), contactId) != null; //canEditContact is true if user is a user and if contact is among list of contacts
+	}
 	
 	
 }

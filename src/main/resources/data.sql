@@ -19,3 +19,14 @@ insert into java302.user_roles (user_id, role) values ((select id from java302.u
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'aweston@smoothie.com'), 'USER');
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'jfredrick@smoothie.com'), 'USER');
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'erogers@smoothie.com'), 'ADMIN');
+
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('Summer', 'Blakes', 'SummerSBlakes@jourrapide.com', '9734838030', true, (select id from java302.users where email = 'jfredrick@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('Herbert', 'Malone', 'HerbertMMalone@armyspy.com', '2625328237', true, (select id from java302.users where email = 'danderson@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('John', 'Hathaway', 'JohnRHathaway@teleworm.us', '7249661769', true, (select id from java302.users where email = 'danderson@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('Brandon', 'Young', 'BrandonHYoung@jourrapide.com', '8142635623', true, (select id from java302.users where email = 'ajohns@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('James', 'Harmon', 'JamesSHarmon@jourrapide.com', '9713273709', true, (select id from java302.users where email = 'dcarter@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('Patrice', 'Gress', 'PatriceAGress@teleworm.us', '6105661496', true, (select id from java302.users where email = 'sbjergson@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('Charles', 'Redd', 'CharlesERedd@rhyta.com', '8043816085', true, (select id from java302.users where email = 'jwilliams@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('Ashley', 'Weston', 'aweston@smoothie.com', '1234165379', true, (select id from java302.users where email = 'jwilliams@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('Jason', 'Fredrick', 'jfredrick@smoothie.com', '1234165346', true, (select id from java302.users where email = 'zsmith@smoothie.com'));
+insert into java302.contacts (first_name, last_name, email, phone_number, active, user_id) values ('Evelynn', 'Rogers', 'erogers@smoothie.com', '1234166269', true, (select id from java302.users where email = 'zsmith@smoothie.com'));

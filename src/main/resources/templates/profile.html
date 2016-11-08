@@ -6,13 +6,14 @@
 </head>
 <body layout:fragment="content">
 	<h1>User</h1>
+	
 	<img id="avatar" src="" th:if="${userImage}" th:src="${userImage.htmlSrc}" alt="Profile Image" title="Profile Image"/>
 	<ul th:object="${user}">
 		<li th:text="*{firstName}"></li>
 		<li th:text="*{lastName}"></li>
 		<li th:text="*{email}"></li>
 		<li th:text="*{phoneNumber}"></li>
-		<li th:if="${permissions.canEditUser(user.id)}"><a href="/" th:href="@{|/user/${user.id}/edit|}">Edit</a></li>
+		<li th:if="${permissions.canEditUser(user.id)}"><a href="/" th:href="@{|/user/${user.id}/edit|}">Edit User</a></li>
 	</ul>
 	<a href="/">Back</a>
 </body>

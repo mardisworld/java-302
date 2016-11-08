@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
 <head>
-    <title>User Edit</title>
+    <title>Edit Contact</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -22,33 +22,33 @@
 </head>
 
 <body layout:fragment="content">
-	<h1>User</h1>
-	<form th:action="@{|/user/${user.id}/edit|}" enctype="multipart/form-data" method="POST">
-		<input name="id" type="hidden" th:value="${user.id}"/>
+	<h1>Contact</h1>
+	<form th:action="@{|/contact/${contact.id}/edit|}" enctype="multipart/form-data" method="POST">
+		<input name="userId" type="hidden" th:value="${contact.id}"/> <!-- "name=id"before, changed to "userId" -->
 			
 		<div class="field">
 			<label for="firstName">First Name</label>
-			<input name="firstName" type="text" th:value="${user.firstName}"/>
+			<input name="firstName" type="text" th:value="${contact.firstName}"/>
 		</div>
 		
 		<div class="field">
 			<label for="lastName">Last Name</label>
-			<input name="lastName" type="text" th:value="${user.lastName}"/>
+			<input name="lastName" type="text" th:value="${contact.lastName}"/>
 		</div>
 		
 		<div class="field">
 			<label for="email">Email</label>
-			<input name="email" type="text" th:value="${user.email}"/>
+			<input name="email" type="text" th:value="${contact.email}"/>
 		</div>
 		
-		<div class="field">
+	<!--  	<div class="field">
 			<label for="password">Password</label>
-			<input name="password" type="password" th:value="${user.password}"/>
-		</div>
+			<input name="password" type="password" th:value="${contact.password}"/>
+		</div> -->
 		
 		<div class="field">
 			<label for="phoneNumber">Phone Number</label>
-			<input name="phoneNumber" type="text" th:value="${user.phoneNumber}"/>
+			<input name="phoneNumber" type="text" th:value="${contact.phoneNumber}"/>
 		</div>
 		
 		<div class="field">
@@ -62,7 +62,7 @@
 		</div>
 		
 		<input type="submit" th:value="Update"/>
-		<a href="/" th:href="@{|/user/${user.id}|}">Back</a>
+		<a href="/" th:href="@{|/contact/${contact.id}|}">Back</a>
 	</form>
 </body>
 </html>
