@@ -6,10 +6,9 @@
 </head>
 
 <body layout:fragment="content">
-	<!-- <div class="row"> -->
+
 		<h1>Contact</h1>
 		
-		<!--  <div th:if="${user}"> -->
 			<img id="avatar" src="" th:if="${contactImage}" th:src="${contactImage.htmlSrc}" alt="Contact Image" title="Contact Image" />
 			<ul th:object="${contact}">
 				<li th:text="*{firstName}"></li>
@@ -17,14 +16,11 @@
 				<li th:text="*{email}"></li>
 				<li th:text="*{phoneNumber}"></li>
 				<li th:if="${permissions.canEditContact(contact.id)}"><a href="/" th:href="@{|/contact/${contact.id}/edit|}">Edit Contact</a></li>
-		<!-- 	<li><a href="/" th:href="@{|/user/${user.id}/edit|}">Edit</a></li> -->
 			</ul>
-	<!-- </div>  
+
 		
-		<div th:unless="${user}">
-			<h3>No user found</h3>
-		</div>
+		
 		<a href="/">Back</a>
-	</div> -->
+	
 </body>
 </html>

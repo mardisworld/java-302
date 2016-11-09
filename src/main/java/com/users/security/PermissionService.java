@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.users.repositories.ContactRepository;
 import com.users.repositories.UserRepository;
-import static com.users.security.Role.ADMIN;
-import static com.users.security.Role.USER;
+import static com.users.security.Role.ROLE_USER;
+import static com.users.security.Role.ROLE_ADMIN;
 
 
 //from Spring documentations @ https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/Service.html
@@ -38,16 +38,28 @@ public class PermissionService {
 	}
 	
 	public long findCurrentUserId() {
-		return userRepo.findByEmail(getToken().getName()).get(0).getId(); // cut out from canEditUserMethod: long currentUserId = userRepo.findByEmail(getToken().getName()).get(0).getId();//finds currentUserID based on email
-
+		return userRepo.findByEmail(getToken().getName()).get(0).getId(); // 
 	}
+	
 
-	public boolean canEditUser(long userId) { //method that returns boolean true/false if can edit user
-		return hasRole(ADMIN) || (hasRole(USER) && findCurrentUserId() == userId); //returns true if user is an ADMIN or if current userId == userID
+	
+//	public boolean canEditUser(long userId) {
+//		long currentUserId = userRepo.findByEmail(getToken().getName()).get(0).getId();
+//		return hasRole(ADMIN) || (hasRole(USER) && currentUserId == userId);
+//	}
+//
+//	
+//	public long findCurrentUserEmail() {
+//		return userRepo.findByEmail(getToken().getName()).get(0).getId(); // cut out from canEditUserMethod: long currentUserId = userRepo.findByEmail(getToken().getName()).get(0).getId();//finds currentUserID based on email
+//
+//	}
+
+	public boolean canAccessUser(long userId) { //method that returns boolean true/false if can edit user
+		return hasRole(ROLE_ADMIN) || (hasRole(ROLE_USER) && findCurrentUserId() == userId); //returns true if user is an ADMIN or if current userId == userID
 	}
 
 	public boolean canEditContact(long contactId) {
-		return hasRole(USER) && contactRepo.findByUserIdAndId(findCurrentUserId(), contactId) != null; //canEditContact is true if user is a user and if contact is among list of contacts
+		return hasRole(ROLE_USER) && contactRepo.findByUserIdAndId(findCurrentUserId(), contactId) != null; //canEditContact is true if user is a user and if contact is among list of contacts
 	}
 	
 	

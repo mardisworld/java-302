@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
 <head>
-    <title>User Edit</title>
+    <title>Edit Profile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -23,6 +23,7 @@
 
 <body layout:fragment="content">
 	<h1>User</h1>
+	
 	<form th:action="@{|/user/${user.id}/edit|}" enctype="multipart/form-data" method="POST">
 		<input name="id" type="hidden" th:value="${user.id}"/>
 			
@@ -57,7 +58,7 @@
 		</div>
 		
 		<div class="field">
-			<label for="removeImage">Remove Image?</label>
+			<label for="removeImage">Remove Profile Image?</label>
 			<input name="removeImage" type="checkbox" value="true"/>
 		</div>
 		

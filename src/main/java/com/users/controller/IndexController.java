@@ -6,6 +6,7 @@ import java.util.Optional; //?
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -21,6 +22,7 @@ import com.users.beans.UserImage;
 import com.users.repositories.UserImageRepository;
 import com.users.repositories.UserRepository;
 import com.users.security.PermissionService;
+import static com.users.security.Role.ROLE_ADMIN;
 
 @Controller
 public class IndexController {
@@ -42,17 +44,34 @@ public class IndexController {
 		return "greeting";
 	}
 
-	@RequestMapping("/")
-	public String listing(Model model) {
-		model.addAttribute("users", userRepo.findAllByOrderByFirstNameAscLastNameAsc());
-		return "list";
-	}
+//	@RequestMapping("/")
+//	public String listing(Model model) {
+//		model.addAttribute("users", userRepo.findAllByOrderByFirstNameAscLastNameAsc());
+//		return "list";
+//	}
 
+	@RequestMapping("/")
+	public String home(Model model) {
+		return permissionService.hasRole(ROLE_ADMIN) ? "redirect:/users" : "redirect:/contacts";
+	}
+	
+	@Secured("ROLE_ADMIN")		//if user is an ADMIN, this will allow him/her to see a list of users
+	@RequestMapping("/spaghettiandpizzalistusers")
+	public String listUsers(Model model) {
+		model.addAttribute("users", userRepo.findAllByOrderByFirstNameAscLastNameAsc());
+		return "listUsers";	//listUsers can't work yet bc I don't have a listUsers.html, but I renamed list to be listUsers, this should work but it doesn't
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView getLoginPage(@RequestParam Optional<String> error) {
 		return new ModelAndView("login", "error", error);
 	}
 
+	@RequestMapping("/myprofile")
+	public String myprofile(Model model) {
+		return profile(permissionService.findCurrentUserId(), model);
+	}
+	
 	@RequestMapping("/user/{userId}")
 	public String profile(@PathVariable long userId, Model model) {
 		model.addAttribute("user", userRepo.findOne(userId));
@@ -61,13 +80,17 @@ public class IndexController {
 			model.addAttribute("userImage", images.get(0));
 		}
 		model.addAttribute("permissions", permissionService);
+		if(!permissionService.canAccessUser(userId)) {
+			log.warn("Cannot allow user to view " + userId);
+			return "redirect:/";
+		}
 		return "profile";
 	}
 
 	@RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.GET)
 	public String profileEdit(@PathVariable long userId, Model model) {
 		model.addAttribute("user", userRepo.findOne(userId));
-		if(!permissionService.canEditUser(userId)) {
+		if(!permissionService.canAccessUser(userId)) {
 			log.warn("Cannot allow user to edit " + userId);
 			return "profile";
 		}
@@ -84,10 +107,12 @@ public class IndexController {
 			@RequestParam(name = "removeImage", defaultValue = "false") boolean removeImage,
 			@RequestParam("file") MultipartFile file,
 			Model model) {
-		if(!permissionService.canEditUser(userId)) {
+		
+		if(!permissionService.canAccessUser(userId)) { 
 			log.warn("Cannot allow user to edit " + userId);
 			return "profile";
-		}
+		} //user is an Admin
+		
 		log.debug("Saving user " + user);
 		userRepo.save(user);
 		model.addAttribute("message", "User " + user.getEmail() + " saved.");

@@ -22,18 +22,20 @@ public class Contact {
 	@Column(unique = true)
 	private String email;
 	private String phoneNumber;
-	//private String password;
 	private boolean active;
 	
 	protected Contact() {}
 	
-	protected Contact(long userId, String firstName, String lastName, String email, String phoneNumber, boolean active) { // String password,
+	public Contact(long userId){
+		this.userId=userId;
+	}
+	
+	public Contact(long userId, String firstName, String lastName, String email, String phoneNumber, boolean active) { // String password,
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-	//	this.password = password;
 		this.active = active;
 	}
 	
@@ -90,15 +92,6 @@ public class Contact {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
-//	public String getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
-
 
 	public boolean isActive() {
 		return active;

@@ -6,7 +6,7 @@
 </head>
 <body layout:fragment="content">
 	<h1>Contacts</h1>
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>First Name</th>
@@ -22,9 +22,10 @@
 				<td th:text="${contact.lastName}"></td>
 				<td th:text="${contact.email}"></td>
 				<td th:text="${contact.phoneNumber}"></td>
-				<td><a href="/" th:href="@{|/contact/${contact.id}|}">Contact</a></td>
+				<td><a href="/" th:href="@{|/contact/${contact.id}|}">View Contact</a></td>
 			</tr>
 		</tbody>
 	</table>
+	<a href="/contact/create">Create New Contact</a>
 </body>
 </html>

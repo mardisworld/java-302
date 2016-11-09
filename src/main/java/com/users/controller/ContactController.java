@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -20,7 +21,7 @@ import com.users.beans.ContactImage;
 import com.users.repositories.ContactImageRepository;
 import com.users.repositories.ContactRepository;
 import com.users.security.PermissionService;
-
+import static com.users.security.Role.ROLE_USER;
 
 
 @Controller
@@ -42,14 +43,16 @@ public class ContactController {
 	@Autowired
 	private PermissionService permissionService;
 	
+	@Secured("ROLE_USER") 
 	@RequestMapping("/contacts")
 	public String listContacts(Model model) {
 		long currentUserId = permissionService.findCurrentUserId();
 		model.addAttribute("contacts",
 	contactRepo.findAllByUserIdOrderByFirstNameAscLastNameAsc(currentUserId));
-		return "listContacts";
+		return "listContacts"; //returns a list of contacts based on Current User's id
 	}
 	
+	@Secured("ROLE_USER") //authenticates that current user has role of user, and authenticates so user can access contact
 	@RequestMapping("/contact/{contactId}")
 	public String contact(@PathVariable long contactId, Model model) {
 		model.addAttribute("contact", contactRepo.findOne(contactId));
@@ -58,10 +61,10 @@ public class ContactController {
 			model.addAttribute("contactImage", images.get(0));
 		}
 		model.addAttribute("permissions", permissionService);
-		return "contact";
+		return "contact";	//returns a contact based on the contactId, which is passed in by the user when he/she clicks on "Contact" in the listContacts.html file
 	}
-
-
+	
+	@Secured("ROLE_USER") //authenticates that current user has role of user, and authenticates so user can RequestMapping to edit contact edit
 	@RequestMapping(value = "/contact/{contactId}/edit", method = RequestMethod.GET)
 	public String contactEdit(@PathVariable long contactId, Model model) {
 		model.addAttribute("contact", contactRepo.findOne(contactId));
@@ -75,11 +78,30 @@ public class ContactController {
 		if (!CollectionUtils.isEmpty(images)) {
 			model.addAttribute("contactImage", images.get(0));
 		}
-		return "contactEdit";
+		return "contactEdit"; //returns the html page to edit a contact based on the contactId, which is passed in by the user when he/she clicks on "Contact" in the listContacts.html file
 	}
 	
+	@Secured("ROLE_USER") //authenticates that current user has role of user, and authenticates so user can RequestMapping to create contact
+	@RequestMapping(value = "/contact/create", method = RequestMethod.GET)
+	public String createContact(Model model) {
+		model.addAttribute("contact", new Contact(permissionService.findCurrentUserId()));
+		
+		return "contactCreate"; //returns the html page to create a contact based on the current user's id
+	}
 
-	@RequestMapping(value = "/contact/{contactId}/edit", method = RequestMethod.POST)
+	@Secured("ROLE_USER") //authenticates that current user has role of user, and authenticates so user can PostMapping to save contact changes
+	@RequestMapping(value = "/contact/create", method = RequestMethod.POST)
+	public String createContact(@ModelAttribute Contact contact,
+			@RequestParam("file") MultipartFile file, Model model) {
+
+		Contact savedContact = contactRepo.save(contact);
+
+		return profileSave(savedContact, savedContact.getId(), false, file, model); //saves new contact to current user's list of contacts
+	} //posts new contact's data to temporary datasource(part of Model)
+
+	
+	@Secured("ROLE_USER") 
+	@RequestMapping(value = "/contact/{contactId}/edit", method = RequestMethod.POST) //authenticates that current user has role of user, and authenticates so user can PostMapping to save contact
 	public String profileSave(@ModelAttribute Contact contact, @PathVariable long contactId,
 			@RequestParam(name = "removeImage", defaultValue = "false") boolean removeImage,
 			@RequestParam("file") MultipartFile file, Model model) {
@@ -87,8 +109,8 @@ public class ContactController {
 		if (!permissionService.canEditContact(contactId)) {
 			log.warn("Cannot allow user to edit " + contactId);
 			return "contact";
-		}
-
+		} 
+		//user is a contact
 		log.debug("Saving contact " + contact);
 		contactRepo.save(contact);
 		model.addAttribute("message", "Contact " + contact.getEmail() + " saved.");
@@ -96,8 +118,7 @@ public class ContactController {
 		if (!file.isEmpty()) {
 			try {
 				List<ContactImage> images = contactImageRepo.findByContactId(contact.getId());
-				ContactImage img = (images.size() > 0) ? images.get(0)
-						: new ContactImage(contactId);
+				ContactImage img = (images.size() > 0) ? images.get(0) : new ContactImage(contactId);
 				img.setContentType(file.getContentType());
 				img.setImage(file.getBytes());
 				contactImageRepo.save(img);
@@ -117,9 +138,8 @@ public class ContactController {
 			}
 		}
 
-		return contact(contactId, model);
+		return contact(contactId, model); //posts modified contact data to temporary datasource(part of Model)
 	}
-
 
 
 

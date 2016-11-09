@@ -1,15 +1,17 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
-{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red0\green0\blue255;\red63\green127\blue95;
+\red0\green0\blue0;\red29\green48\blue13;\red128\green0\blue128;\red128\green0\blue128;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\b\fs24 \cf0 Notes:
 \b0 \
 11/07/16\
-Step 1:\
+step 1:\
 Added additional security features so that ADMIN users can edit any of USERS, but USERS can only edit their own accounts.\
 \
 Things I\'92m don\'92t understand well: \
@@ -22,4 +24,122 @@ Things I\'92m don\'92t understand well: \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 \cf0 \
 The app has changed because it allows an ADMIN to edit any user, while a USER now has the ability to edit his/her own account. \
+\
+\
+
+\b Notes:
+\b0 \
+Finished step2 today.\
+Was able to view list of users from localhost:8080 and list of contacts from a user\'92s point of view. Was also able to make changes to a contact from a user\'92s point of view. \
+11/08/16\
+\
+Most of the way through step3\
+\
+Still don\'92t understand the questions listed from step1:\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls2\ilvl0\cf0 {\listtext	1.	}changes in Application.java file since the simpler Application.java we have used up until this point\
+{\listtext	2.	}What are RegistrationBean & ServletRegistrationBean?\
+{\listtext	3.	}What is SpringSecurityDialect?\
+{\listtext	4.	}What is a UsernamePasswordApplicationToken?\
+{\listtext	5.	}What is getAuthority?\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+Able to follow the directions without much trouble, although it did get confusing when I was trying to write links for header.html. \
+Wasn\'92t sure if user or contact would match requestURI, haven\'92t tried it yet, so I have to run it. \
+\
+Also, very confused about how SecurityConfiguration works.\
+\
+\cf2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\cf0 \'97\
+\
+\
+
+\b\fs28 Logged in as Evie (ADMIN)
+\b0\fs24 \
+\
+\cf3 Run #1:\cf0  localhost:8080 takes me to localhost:8080/login\
+\
+Logged in as Evie (ADMIN)\
+\
+Clicking on users took me to localhost:8080/users. \
+\cf2 ERROR \cf0 message \
+\
+Diagnosis: 
+\f1\fs22 \cf4 //listUsers.html does not yet exist as a file yet, so I can\'92t call it  in IndexContoller.java. Have to use list.html from beginning. No big deal.
+\f0\fs24 \cf0 \
+\
+\cf3 Run #2:  \cf0 localhost:8080 takes me to localhost:8080/login\
+\
+\
+Renamed\cf5  
+\f1\fs22  list.html \cf0 with listUsers.html\cf5 . /\cf2 /the file system does not find this file\
+\cf5 \
+
+\f0\fs24 \cf0 \
+Logged in as Evie (ADMIN) takes me immediately to a list of Users. I believe that this is the correct output I should see. As ADMIN, I have the ability to click on the \'91Profile\'92 link, which brings up the profile\'92s details via profile.html. 
+\b I also have the ability to edit those details via profileEdit.html, which updates them in my list.html view. The ability to edit and update Contacts is missing from the User perspective. \
+
+\b0 \cf6 \
+Can I upload a file? Yes. \cf7 \
+\
+{\field{\*\fldinst{HYPERLINK "http://localhost:8080/listUsers"}}{\fldrslt http://localhost:8080/listUsers}} gives a 404 NotFound error\
+\
+Click o Ptogir link\
+{\field{\*\fldinst{HYPERLINK "http://localhost:8080/listUsers"}}{\fldrslt http://localhost:8080/users}} \cf5 works fine\
+\
+Why is {\field{\*\fldinst{HYPERLINK "http://localhost:8080/listUsers"}}{\fldrslt \cf8 http://localhost:8080/users}}\cf8  \cf0 a safe site to land on? while actual file listUsers.html is not?\
+\
+\
+\
+Log out ADMIN. \
+\
+
+\b\fs28 Logged in as Zach(USER)
+\b0\fs24 \
+\
+Logging in allows me to see my list of contacts. I can click on contact to inspect details, edit detailsI must have cut a piece of code out, because I was able to add an image to an earlier file, of either contact or user.   \
+\
+Clicking on  Edit Contact does NOT change her details. Clicking on Contacts at the top of the page brings me to an error message. 404. This is surprising, because I DO have a listContacts page.\
+\
+\
+\cf3 Run #3:  \cf0 localhost:8080 takes me to localhost:8080/login\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "http://localhost:8080/listUsers"}}{\fldrslt \cf8 http://localhost:8080\cf3 /}}\cf3 contacts \cf0 works fine\
+\
+Clicking on View Contact brings me to {\field{\*\fldinst{HYPERLINK "http://localhost:8080/contact/10"}}{\fldrslt http://localhost:8080/contact/10}}\
+\
+Edit Contact brings me to {\field{\*\fldinst{HYPERLINK "http://localhost:8080/contact/10/edit"}}{\fldrslt http://localhost:8080/contact/10/edit}}\
+\
+\
+logged in as Zach(USER).  I can click on contact to inspect details, edit detailsI must have cut a piece of code out, because 
+\b I was able to add an image to an earlier file, of both contact or user.   \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 \
+If I click on Evie\'92s View Contact link, this brings me to localhost:8080/contact/10 \
+localhost:8080/(contact/\{contactId\}\
+\
+\
+f I click on Evie\'92s Edit Contact link, this brings me to localhost:8080/contact/10/edit \
+localhost:8080/(contact/\{contactId\}/edit\
+\
+Clicking on Contacts from User\'92s home page leads to a 404 error.\
+\
+{\field{\*\fldinst{HYPERLINK "http://localhost:8080/listContacts"}}{\fldrslt http://localhost:8080/listContacts}} (produces 404 error)\
+\
+MyProfile does actually show Zach\'92s profile. \
+\
+
+\i\b\fs26 Does allow me to add images, DOES NOT allow me to edit Contact details.
+\i0\b0\fs24 \
+\
+Can ADMIN add Profiles? Not yet. Can they edit them? No. Can add pictures. Should they be able to? IDK. \
+\
+Can USERS add Contacts? Not yet. Can they edit details? No  \
+Should they be able to? IDK. Can add pictures contacts? Yes \
+\
+\
+\
+\
+\
 }
