@@ -13,6 +13,8 @@
 		<li th:text="*{lastName}"></li>
 		<li th:text="*{email}"></li>
 		<li th:text="*{phoneNumber}"></li>
+		<li th:if="*{! #strings.isEmpty(twitterHandle)}"><a target="_blank" th:href="@{|https://twitter.com/*{twitterHandle}|}" th:text="*{twitterHandle}"></a></li>
+		<li th:if="*{! #strings.isEmpty(facebookUrl)}"><a target="_blank" th:href="@{|https://facebook.com/*{facebookUrl}|}" th:text="*{facebookUrl}"></a></li>
 		<li th:if="${permissions.canAccessUser(user.id)}"><a href="/" th:href="@{|/user/${user.id}/edit|}">Edit User Profile?</a></li>
 	</ul>
 	<a href="/">Back</a>

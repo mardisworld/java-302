@@ -23,11 +23,14 @@ public class Contact {
 	private String email;
 	private String phoneNumber;
 	private boolean active;
+	private String twitterHandle;
+	private String  facebookUrl;
 	
 	protected Contact() {}
 	
 	public Contact(long userId){
 		this.userId=userId;
+		this.active=true;
 	}
 	
 	public Contact(long userId, String firstName, String lastName, String email, String phoneNumber, boolean active) { // String password,
@@ -37,11 +40,13 @@ public class Contact {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.active = active;
+		this.twitterHandle=twitterHandle;
+		this.facebookUrl=facebookUrl;
 	}
-	
+
 	@Override
 	public String toString() { //creating String that includes Contacts' id, first name, last name, email address, phone number, and active status
-		return "Contact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", active=" + active + "]"; //password=" + password + ",
+		return "Contact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", active=" + active + ", twitterHandle=" + twitterHandle + ", facebookUrl" + facebookUrl + "]"; //password=" + password + ",
 	}
 
 
@@ -99,6 +104,22 @@ public class Contact {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	
+	public String getTwitterHandle() {
+		return twitterHandle;
+	}
+
+	public void setTwitterHandle(String twitterHandle) {
+		this.twitterHandle = twitterHandle;
+	}
+
+	public String getFacebookUrl() {
+		return facebookUrl;
+	}
+
+	public void setFacebookUrl(String facebookUrl) {
+		this.facebookUrl = facebookUrl;
 	}
 
 

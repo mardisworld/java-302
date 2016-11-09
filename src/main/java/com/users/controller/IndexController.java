@@ -87,6 +87,23 @@ public class IndexController {
 		return "profile";
 	}
 
+	@Secured("ROLE_ADMIN")
+	@RequestMapping(value = "/user/create", method = RequestMethod.GET)	
+	public String createContact(Model model) {	//model is a placeholder to hold the information you want to display on the view.
+		model.addAttribute("user", new User());	//here, it is the list of parameters associated with user
+		return "userCreate";	//takes us to userCreate.html, where admin can fill out new user's details
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
+	public String createContact(@ModelAttribute User user,
+			@RequestParam("file") MultipartFile file, Model model) {
+		User savedUser = userRepo.save(user);	
+		
+	return profileSave(savedUser, savedUser.getId(), false, file, model); //saving the new user to the datasource
+	}
+
+	
 	@RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.GET)
 	public String profileEdit(@PathVariable long userId, Model model) {
 		model.addAttribute("user", userRepo.findOne(userId));

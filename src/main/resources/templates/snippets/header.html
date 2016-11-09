@@ -14,21 +14,18 @@
 			</div>
 			
 			<div class="navbar-collapse collapse">
+			
 				<ul class="nav navbar-nav">
-				
-					
-					
 					<li sec:authorize="hasRole('ROLE_ADMIN')" th:class="${#httpServletRequest.requestURI.contains('user')?'active':null}"><a href="#" th:href="@{/users}">Users</a></li>
 					<li sec:authorize="hasRole('ROLE_USER')" th:class="${#httpServletRequest.requestURI.contains('user')?'active':null}"><a href="#" th:href="@{/contacts}">Contacts</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')" th:class="${#httpServletRequest.requestURI.contains('user')?'active':null}"><a href="#" th:href="@{/myprofile}">Admin Profile</a></li>
 					<li sec:authorize="hasRole('ROLE_USER')" th:class="${#httpServletRequest.requestURI.contains('user')?'active':null}"><a href="#" th:href="@{/myprofile}">User Profile</a></li>
-					
-					
-					
 				</ul>
+				
 				<ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
 					<li><a href="#" onclick="$('#logoutForm').submit();">Logout</a></li>
 				</ul>
+				
 				<form th:action="@{/logout}" method="post" style="display: none;" id="logoutForm" sec:authorize="isAuthenticated()">
 		            <input type="submit" value="Log Out"/>
 		        </form>
