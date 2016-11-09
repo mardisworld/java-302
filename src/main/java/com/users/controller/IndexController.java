@@ -56,7 +56,7 @@ public class IndexController {
 	}
 	
 	@Secured("ROLE_ADMIN")		//if user is an ADMIN, this will allow him/her to see a list of users
-	@RequestMapping("/spaghettiandpizzalistusers")
+	@RequestMapping("/users")
 	public String listUsers(Model model) {
 		model.addAttribute("users", userRepo.findAllByOrderByFirstNameAscLastNameAsc());
 		return "listUsers";	//listUsers can't work yet bc I don't have a listUsers.html, but I renamed list to be listUsers, this should work but it doesn't
