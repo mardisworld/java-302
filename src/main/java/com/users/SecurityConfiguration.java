@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			httpSecurity
 					.authorizeRequests().antMatchers("/h2-console/**").permitAll()
 					.and()
-					.authorizeRequests().antMatchers("/console/**").permitAll()
+					.authorizeRequests().antMatchers("/login", "/register", "/user/create").permitAll()
 					.and()
 					.authorizeRequests().antMatchers("/login").permitAll()
 					.and()

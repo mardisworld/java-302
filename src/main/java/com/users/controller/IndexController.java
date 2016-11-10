@@ -19,9 +19,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.users.beans.User;
 import com.users.beans.UserImage;
+import com.users.beans.UserRole;
 import com.users.repositories.UserImageRepository;
 import com.users.repositories.UserRepository;
+import com.users.repositories.UserRoleRepository;
 import com.users.security.PermissionService;
+import com.users.service.ImageService;
+
+import static com.users.security.Role.ROLE_USER;
 import static com.users.security.Role.ROLE_ADMIN;
 
 @Controller
@@ -35,7 +40,13 @@ public class IndexController {
 	private UserImageRepository userImageRepo;
 	
 	@Autowired
+	private UserRoleRepository userRoleRepo;
+	
+	@Autowired
 	private  PermissionService permissionService;
+	
+	@Autowired
+	private ImageService imageService;		//step 5, #11
 
 	@RequestMapping("/greeting")
 	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
@@ -44,11 +55,6 @@ public class IndexController {
 		return "greeting";
 	}
 
-//	@RequestMapping("/")
-//	public String listing(Model model) {
-//		model.addAttribute("users", userRepo.findAllByOrderByFirstNameAscLastNameAsc());
-//		return "list";
-//	}
 
 	@RequestMapping("/")
 	public String home(Model model) {
@@ -72,6 +78,11 @@ public class IndexController {
 		return profile(permissionService.findCurrentUserId(), model);
 	}
 	
+	@RequestMapping("/register")
+	public String register(Model model) {
+	return createUser(model);
+}
+	
 	@RequestMapping("/user/{userId}")
 	public String profile(@PathVariable long userId, Model model) {
 		model.addAttribute("user", userRepo.findOne(userId));
@@ -87,21 +98,28 @@ public class IndexController {
 		return "profile";
 	}
 
-	@Secured("ROLE_ADMIN")
-	@RequestMapping(value = "/user/create", method = RequestMethod.GET)	
-	public String createContact(Model model) {	//model is a placeholder to hold the information you want to display on the view.
+	//commented out @Secured("ROLE_ADMIN") this is GET method for createUser
+	@RequestMapping(value = "/user/create", method = RequestMethod.GET)	//changed from createContact
+	public String createUser(Model model) {	//model is a placeholder to hold the information you want to display on the view.
 		model.addAttribute("user", new User());	//here, it is the list of parameters associated with user
 		return "userCreate";	//takes us to userCreate.html, where admin can fill out new user's details
 	}
 	
-	@Secured("ROLE_ADMIN")
+	//cut out @Secured("ROLE_ADMIN") this is POST method for create User
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
-	public String createContact(@ModelAttribute User user,
+	public String createUser(@ModelAttribute User user,			//changed from createContact
 			@RequestParam("file") MultipartFile file, Model model) {
-		User savedUser = userRepo.save(user);	
 		
-	return profileSave(savedUser, savedUser.getId(), false, file, model); //saving the new user to the datasource
-	}
+		log.info(user.toString());		//step5, #18
+		User savedUser = userRepo.save(user);	
+		UserRole role = new UserRole(savedUser, ROLE_USER);		
+		userRoleRepo.save(role);
+		imageService.saveImage(file, savedUser); //lines of code120-122 from step5, #29
+
+	return profile(savedUser.getId(), model); //saving the new user to the datasource, modified in step5, #19
+	} //did the changes made to userRoleRepo get saved? 
+	
+	//THIS SHOULDN"T BE TAKING ME BACK TO LOGIN PAGE!!!
 
 	
 	@RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.GET)
@@ -133,30 +151,13 @@ public class IndexController {
 		log.debug("Saving user " + user);
 		userRepo.save(user);
 		model.addAttribute("message", "User " + user.getEmail() + " saved.");
-
-		if (!file.isEmpty()) {
-			try {
-				List<UserImage> images = userImageRepo.findByUserId(user.getId());
-				UserImage img = (images.size() > 0) ? images.get(0) : new UserImage(userId);
-				img.setContentType(file.getContentType());
-				img.setImage(file.getBytes());
-				userImageRepo.save(img);
-
-				log.debug("Saved Image");
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-
-		} else if (removeImage) {
-			log.debug("Removing Image");
-			// user.setImage(null);
-			List<UserImage> images = userImageRepo.findByUserId(user.getId());
-
-			for (UserImage img : images) {
-				userImageRepo.delete(img);
-			}
+		if(removeImage) {
+			imageService.deleteImage(user);
+		} else {
+			imageService.saveImage(file, user);
 		}
-
 		return profile(userId, model);
 	}
+	
+	
 }
