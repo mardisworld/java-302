@@ -1,31 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
 <head>
-    <title>Edit Profile</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <style type="text/css">
-    	.field {
-    		display: block;
-    		margin-bottom: 5px;
-    	}
-    	
-    	.field input, .field select {
-    		float: right;
-    		width: 170px;
-    	}
 
-    	form {
-    		width: 290px;
-    	}
-    </style>
+<title>Create New Account</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body layout:fragment="content">
-	<h1>User</h1>
-	
-	<form th:action="@{|/user/${user.id}/edit|}" enctype="multipart/form-data" method="POST">
-		<input name="id" type="hidden" th:value="${user.id}"/>
+<h1>Create an Account</h1>
+	<form th:action="@{|/user/create|}" enctype="multipart/form-data" method="POST">
+		<input name="id" type="hidden" th:value="${user.id}"/>	<!--  -->
 			
 		<div class="field">
 			<label for="firstName">First Name</label>
@@ -36,15 +20,15 @@
 			<label for="lastName">Last Name</label>
 			<input name="lastName" type="text" th:value="${user.lastName}"/>
 		</div>
-		
+
 		<div class="field">
-			<label for="email">Email</label>
+			<label for="email">Email address</label>
 			<input name="email" type="text" th:value="${user.email}"/>
 		</div>
 		
 		<div class="field">
 			<label for="password">Password</label>
-			<input name="password" type="password" th:value="${user.password}"/>
+			<input name="password" type="text" th:value="${user.password}"/>
 		</div>
 		
 		<div class="field">
@@ -54,7 +38,7 @@
 		
 		<div class="field">
           <label for="twitterHandle">Twitter Handle</label>
-          <input name="twitterHandle" type="text" th:value="${user.twitterHandle}"/>
+          <input name="twitterHandle" type="text"  th:value="${user.twitterHandle}"/>
         </div>
         
         <div class="field">
@@ -73,8 +57,9 @@
 			<input name="removeImage" type="checkbox" value="true"/>
 		</div>
 		
-		<input type="submit" th:value="Update"/>
-		<a href="/" th:href="@{|/user/${user.id}|}">Back</a>
-	</form>
+		 <button type="submit" class="btn btn-default">Submit</button>
+	
+</form>
+		
 </body>
 </html>

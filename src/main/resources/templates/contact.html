@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
+<head>
+<title>Contact</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body layout:fragment="content">
+
+		<h1>Contact</h1>
+		
+			<img id="avatar" src="" th:if="${contactImage}" th:src="${contactImage.htmlSrc}" alt="Contact Image" title="Contact Image" />
+			<ul th:object="${contact}">
+				<li th:text="*{firstName}"></li>
+				<li th:text="*{lastName}"></li>
+				<li th:text="*{email}"></li>
+				<li th:text="*{phoneNumber}"></li>
+				<li th:if="*{! #strings.isEmpty(twitterHandle)}"><a target="_blank" th:href="@{|https://twitter.com/*{twitterHandle}|}" th:text="*{twitterHandle}"></a></li>
+				<li th:if="*{! #strings.isEmpty(facebookUrl)}"><a target="_blank" th:href="@{|https://facebook.com/*{facebookUrl}|}" th:text="*{facebookUrl}"></a></li>
+				<li th:if="${permissions.canEditContact(contact.id)}"><a href="/" th:href="@{|/contact/${contact.id}/edit|}">Edit Contact</a></li>
+			</ul>
+
+		
+		
+		<a href="/">Back</a>
+	
+</body>
+</html>

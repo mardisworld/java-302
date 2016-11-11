@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
+<head>
+
+<title>Create New Account</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body layout:fragment="content">
+<h1>Create an Account</h1>
+	<form th:action="@{|/contact/create|}" enctype="multipart/form-data" method="POST">
+		<input name="userId" type="hidden" th:value="${contact.userId}"/>
+			
+		<div class="field">
+			<label for="firstName">First Name</label>
+			<input name="firstName" type="text" th:value="${contact.firstName}"/>
+		</div>
+		
+		<div class="field">
+			<label for="lastName">Last Name</label>
+			<input name="lastName" type="text" th:value="${contact.lastName}"/>
+		</div>
+
+		<div class="field">
+			<label for="email">Email address</label>
+			<input name="email" type="text" th:value="${contact.email}"/>
+		</div>
+		
+		<div class="field">
+			<label for="phoneNumber">Phone Number</label>
+			<input name="phoneNumber" type="text" th:value="${contact.phoneNumber}"/>
+		</div>
+		
+		<div class="field">
+          <label for="twitterHandle">Twitter Handle</label>
+          <input name="twitterHandle" type="text"  th:value="${contact.twitterHandle}"/>
+        </div>
+        
+        <div class="field">
+          <label for="facebookUrl">Facebook URL</label>
+          <input name="facebookUrl" type="text" th:value="${contact.facebookUrl}"/>
+        </div>
+		
+		
+		<div class="field">
+			<label for="file">Image</label>
+			<input name="file" type="file"/>
+		</div>
+		
+		<div class="field">
+			<label for="removeImage">Remove Profile Image?</label>
+			<input name="removeImage" type="checkbox" value="true"/>
+		</div>
+		
+		 <button type="submit" class="btn btn-default">Submit</button>
+	
+</form>
+		
+</body>
+</html>

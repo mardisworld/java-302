@@ -1,15 +1,25 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
-{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
-\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red0\green0\blue255;\red63\green127\blue95;
+\red29\green48\blue13;\red128\green0\blue128;\red127\green0\blue85;\red106\green62\blue62;\red0\green0\blue192;
+\red42\green0\blue255;\red100\green100\blue100;\red0\green128\blue128;\red63\green127\blue127;\red127\green0\blue127;
+\red63\green95\blue191;\red0\green0\blue0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid301\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid401\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid501\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid6}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}}
+\margl1440\margr1440\vieww16740\viewh12420\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\b\fs24 \cf0 Notes:
-\b0 \
+\f0\b\fs36 \cf0 Notes:
+\b0\fs24 \
 11/07/16\
-Step 1:\
+
+\fs36 step 1:
+\fs24 \
 Added additional security features so that ADMIN users can edit any of USERS, but USERS can only edit their own accounts.\
 \
 Things I\'92m don\'92t understand well: \
@@ -22,4 +32,283 @@ Things I\'92m don\'92t understand well: \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 \cf0 \
 The app has changed because it allows an ADMIN to edit any user, while a USER now has the ability to edit his/her own account. \
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 Notes:
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\fs36 \cf0 Finished step2 today.
+\fs24 \
+Was able to view list of users from localhost:8080 and list of contacts from a user\'92s point of view. Was also able to make changes to a contact from a user\'92s point of view. \
+\
+11/08/16\
+\
+
+\fs36 Most of the way through step3
+\fs24 \
+\
+Still don\'92t understand the questions listed from step1:\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls2\ilvl0\cf0 {\listtext	1.	}changes in Application.java file since the simpler Application.java we have used up until this point\
+{\listtext	2.	}What are RegistrationBean & ServletRegistrationBean?\
+{\listtext	3.	}What is SpringSecurityDialect?\
+{\listtext	4.	}What is a UsernamePasswordApplicationToken?\
+{\listtext	5.	}What is getAuthority?\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+Able to follow the directions without much trouble, although it did get confusing when I was trying to write links for header.html. \
+Wasn\'92t sure if user or contact would match requestURI, haven\'92t tried it yet, so I have to run it. \
+\
+Also, very confused about how SecurityConfiguration works.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\cf0 \'97\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\fs36 \cf0 Testing Step4(disregard this):
+\fs24 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b\fs28 \cf0 Logged in as Evie (ADMIN)
+\b0\fs24 \
+\
+\cf3 Run #1:\cf0  localhost:8080 takes me to localhost:8080/login\
+\
+Logged in as Evie (ADMIN)\
+\
+Clicking on users took me to localhost:8080/users. \
+\cf2 ERROR \cf0 message \
+\
+Diagnosis: 
+\f1\fs22 \cf4 //listUsers.html does not yet exist as a file yet, so I can\'92t call it  in IndexContoller.java. Have to use list.html from beginning. No big deal.
+\f0\fs24 \cf0 \
+\
+\cf3 Run #2:  \cf0 localhost:8080 takes me to localhost:8080/login\
+\
+\
+Renamed 
+\f1\fs22  list.html with listUsers.html. /\cf2 /the file system does not find this file\
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+Logged in as Evie (ADMIN) takes me immediately to a list of Users. I believe that this is the correct output I should see. As ADMIN, I have the ability to click on the \'91Profile\'92 link, which brings up the profile\'92s details via profile.html. 
+\b I also have the ability to edit those details via profileEdit.html, which updates them in my list.html view. The ability to edit and update Contacts is missing from the User perspective. \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf5 \
+Can I upload a file? Yes. \cf6 \
+\
+{\field{\*\fldinst{HYPERLINK "http://localhost:8080/listUsers"}}{\fldrslt http://localhost:8080/listUsers}} gives a 404 NotFound error\
+\
+Click o Ptogir link\
+{\field{\*\fldinst{HYPERLINK "http://localhost:8080/listUsers"}}{\fldrslt http://localhost:8080/users}} \cf0 works fine\
+\
+Why is {\field{\*\fldinst{HYPERLINK "http://localhost:8080/listUsers"}}{\fldrslt \cf6 http://localhost:8080/users}}\cf6  \cf0 a safe site to land on? while actual file listUsers.html is not?\
+\
+\
+\
+Log out ADMIN. \
+\
+
+\b\fs28 Logged in as Zach(USER)
+\b0\fs24 \
+\
+Logging in allows me to see my list of contacts. I can click on contact to inspect details, edit detailsI must have cut a piece of code out, because I was able to add an image to an earlier file, of either contact or user.   \
+\
+Clicking on  Edit Contact does NOT change her details. Clicking on Contacts at the top of the page brings me to an error message. 404. This is surprising, because I DO have a listContacts page.\
+\
+\
+\cf3 Run #3:  \cf0 localhost:8080 takes me to localhost:8080/login\
+\
+{\field{\*\fldinst{HYPERLINK "http://localhost:8080/listUsers"}}{\fldrslt \cf6 http://localhost:8080\cf3 /}}\cf3 contacts \cf0 works fine\
+\
+Clicking on View Contact brings me to {\field{\*\fldinst{HYPERLINK "http://localhost:8080/contact/10"}}{\fldrslt http://localhost:8080/contact/10}}\
+\
+Edit Contact brings me to {\field{\*\fldinst{HYPERLINK "http://localhost:8080/contact/10/edit"}}{\fldrslt http://localhost:8080/contact/10/edit}}\
+\
+\
+logged in as Zach(USER).  I can click on contact to inspect details, edit detailsI must have cut a piece of code out, because 
+\b I was able to add an image to an earlier file, of both contact or user.   \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 \
+If I click on Evie\'92s View Contact link, this brings me to localhost:8080/contact/10 \
+localhost:8080/(contact/\{contactId\}\
+\
+\
+f I click on Evie\'92s Edit Contact link, this brings me to localhost:8080/contact/10/edit \
+localhost:8080/(contact/\{contactId\}/edit\
+\
+Clicking on Contacts from User\'92s home page leads to a 404 error.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "http://localhost:8080/listContacts"}}{\fldrslt \cf0 http://localhost:8080/listContacts}} (produces 404 error)\
+\
+MyProfile does actually show Zach\'92s profile. \
+\
+
+\i\b\fs26 Does allow me to add images, DOES NOT allow me to edit Contact details.
+\i0\b0\fs24 \
+\
+Can ADMIN add Profiles? Not yet. Can they edit them? No. Can add pictures. Should they be able to? IDK. \
+\
+Can USERS add Contacts? Not yet. Can they edit details? No  \
+Should they be able to? IDK. Can add pictures contacts? Yes \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\fs36 \cf0 Step5:
+\fs24 \
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 Cut out chunk of profileSave method (Step5, #14-19)
+\b0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 		\cf7 if\cf0  (!\cf8 file\cf0 .isEmpty()) \{\
+			\cf7 try\cf0  \{\
+				List<UserImage> \cf8 images\cf0  = \cf9 userImageRepo\cf0 .findByUserId(\cf8 user\cf0 .getId());\
+				UserImage \cf8 img\cf0  = (\cf8 images\cf0 .size() > 0) ? \cf8 images\cf0 .get(0) : \cf7 new\cf0  UserImage(\cf8 userId\cf0 );\
+				\cf8 img\cf0 .setContentType(\cf8 file\cf0 .getContentType());\
+				\cf8 img\cf0 .setImage(\cf8 file\cf0 .getBytes());\
+				\cf9 userImageRepo\cf0 .save(\cf8 img\cf0 );\
+\
+				\cf9 log\cf0 .debug(\cf10 "Saved Image"\cf0 );\
+			\} \cf7 catch\cf0  (Exception \cf8 e\cf0 ) \{\
+				\cf7 throw\cf0  \cf7 new\cf0  RuntimeException(\cf8 e\cf0 );\
+			\}\
+\
+		\} \cf7 else\cf0  \cf7 if\cf0  (\cf8 removeImage\cf0 ) \{\
+			\cf9 log\cf0 .debug(\cf10 "Removing Image"\cf0 );\
+			\cf4 // user.setImage(null);\cf0 \
+			List<UserImage> \cf8 images\cf0  = \cf9 userImageRepo\cf0 .findByUserId(\cf8 user\cf0 .getId());\
+\
+			\cf7 for\cf0  (UserImage \cf8 img\cf0  : \cf8 images\cf0 ) \{\
+				\cf9 userImageRepo\cf0 .delete(\cf8 img\cf0 );\
+			\}\
+		\}\
+\
+\
+cut from line 111 (createContact method:
+\f0\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf11 @Secured\cf0 (\cf10 "ROLE_ADMIN"\cf0 )
+\f0\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\fs28 \cf0 Notes from Step5 (written into Word doc): 
+\fs24 \
+\
+\pard\pardeftab720\li1080\fi-360\ri0\sl259\slmult1\sa160\partightenfactor0
+\ls3\ilvl0
+\fs22 \cf0 25.	Run the app\'85It should do this\'85\
+\pard\pardeftab720\li720\fi720\ri0\sl259\slmult1\sa160\partightenfactor0
+\cf0 You should be able to create a new user. \
+But if you log out, you won\'92t be able to log in\'85		
+\b\fs24 \cf2 //after I click on Register on login.html page, takes me to createUser.html page (that\'92s good) but when I press Submit button in Create an Account page, it takes me back to login page. Why is it taking me there? Shouldn\'92t it take me to UserProfile instead of login?\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs22 \cf0 \
+	\cf11 @RequestMapping\cf0 (value = \cf10 "/user/create"\cf0 , method = RequestMethod.\cf9 POST\cf0 )\
+	\cf7 public\cf0  String createUser(\cf11 @ModelAttribute\cf0  User \cf8 user\cf0 ,	\
+	method taking me to login.html page when should be taking me to \
+	\cf7 return\cf0  profile(\cf8 savedUser\cf0 .getId(), \cf8 model\cf0 ); \cf4 //saving the new user to the \ul \ulc4 datasource\ulnone , modified in step5, #19\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 \
+
+\fs22 \
+\pard\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+\cf0 TESTING (pg 6 of 7)			
+\b\fs24 \cf2 //created new user, again when I pressed Submit button, took me back to login, should be taking me back to profile page of new user
+\b0\fs22 \cf0 \
+\pard\pardeftab720\li1080\fi-360\ri0\sl259\slmult1\sa160\partightenfactor0
+\ls4\ilvl0\cf0 30.	After this step, you should be able to login with a new user. \
+31.	Register a fake user then go and try to log in to the app with that new user. 
+\b\fs24 \cf2 //can\'92t log in, user doesn\'92t have a password
+\b0\fs22 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf2 //Added password field to user.Create.html in form
+\b0 \cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 	\cf12 <\cf13 div\cf0  \cf14 class\cf0 =\cf10 "field"\cf12 >\cf0 \
+			\cf12 <\cf13 label\cf0  \cf14 for\cf0 =\cf10 "password"\cf12 >\cf0 Password\cf12 </\cf13 label\cf12 >\cf0 \
+			\cf12 <\cf13 input\cf0  \cf14 name\cf0 =\cf10 "password"\cf0  \cf14 type\cf0 =\cf10 "text"\cf0  \cf14 th:value\cf0 =\cf10 "$\{user.password\}"\cf12 />\cf0 \
+		\cf12 </\cf13 div\cf12 >\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf2 //With password field added, when I register, it still takes me to login. But now I can login, and I am allowed \
+into contacts list page after registering. But shouldn\'92t I be taken to my profile, according to return statement \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs22 \cf0 	\cf7 return\cf0  profile(\cf8 savedUser\cf0 .getId(), \cf8 model\cf0 ); \cf4 //\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf12 	\}\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf2 from my createUser POST method?
+\f1\b0 \cf12 \
+\pard\pardeftab720\partightenfactor0
+
+\fs22 \cf12 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 Notes from Step6 (written into Word doc): \
+\
+cut out \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 	\cf12 <\cf13 a\cf0  \cf14 href\cf0 =\cf10 "/contact/share"\cf12 >\cf0 Share Contact\cf12 </\cf13 a\cf12 >\cf0  \cf15 <!--in step6, #37 after line 31 in listContacts.html \'97>\
+
+\f0\fs32 \cf16 I think Paul meant to put this in his file, but it\'92s not there. I took mine out, but will probably put it back in.
+\f1\fs22 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf12 \
+\pard\pardeftab720\li720\fi-360\ri0\sl259\slmult1\sa160\partightenfactor0
+\ls5\ilvl0
+\f0\fs32 \cf0 13.	In the service package create an EmailService\cf2 .//Does this need @Service annotation? \cf16 Yes, according to #27 in Paul\'92s instructions.\cf2 \
+\pard\tx720\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+\cf2 \
+\pard\pardeftab720\li720\fi-360\ri0\sl259\slmult1\sa160\partightenfactor0
+\ls6\ilvl0\cf0 24. Add this import to the top\'85 \cf2 what import? \cf16 Probably the ones that were not there when I compared my file to his on #27 in Paul\'92s instructions. \
+\
+\pard\pardeftab720\li720\fi-360\ri0\sl259\slmult1\sa160\partightenfactor0
+\ls6\ilvl0
+\fs22 \cf2 \
+\pard\tx720\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf0 \
 }

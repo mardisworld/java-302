@@ -5,8 +5,14 @@
     <meta http-equiv=" Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body layout:fragment="content">
-	<h1>Users</h1>
-	<table>
+	<h1>Users List</h1>
+	
+	<form th:action="@{|/user/search|}" method="POST"> <!-- Search field -->
+	   <input type="text" placeholder="Search..." name="search" th:value="${search}" />
+	   <input type="submit" th:value="Search"/>
+	</form> 
+	
+	<table class="table">
 		<thead>
 			<tr>
 				<th>First Name</th>
@@ -26,5 +32,6 @@
 			</tr>
 		</tbody>
 	</table>
+	<a href="/user/create">Create User</a>
 </body>
 </html>

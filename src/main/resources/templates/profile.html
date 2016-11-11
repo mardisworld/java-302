@@ -1,18 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
 <head>
-    <title>User</title>
+    <title>User Profile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body layout:fragment="content">
-	<h1>User</h1>
+	<h1>User Profile</h1>
+	
 	<img id="avatar" src="" th:if="${userImage}" th:src="${userImage.htmlSrc}" alt="Profile Image" title="Profile Image"/>
 	<ul th:object="${user}">
 		<li th:text="*{firstName}"></li>
 		<li th:text="*{lastName}"></li>
 		<li th:text="*{email}"></li>
 		<li th:text="*{phoneNumber}"></li>
-		<li th:if="${permissions.canEditUser(user.id)}"><a href="/" th:href="@{|/user/${user.id}/edit|}">Edit</a></li>
+		<li th:if="*{! #strings.isEmpty(twitterHandle)}"><a target="_blank" th:href="@{|https://twitter.com/*{twitterHandle}|}" th:text="*{twitterHandle}"></a></li>
+		<li th:if="*{! #strings.isEmpty(facebookUrl)}"><a target="_blank" th:href="@{|https://facebook.com/*{facebookUrl}|}" th:text="*{facebookUrl}"></a></li>
+		<li th:if="${permissions.canAccessUser(user.id)}"><a href="/" th:href="@{|/user/${user.id}/edit|}">Edit User Profile?</a></li>
 	</ul>
 	<a href="/">Back</a>
 </body>

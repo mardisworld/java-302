@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
+<head>
+    <title th:text="${pageTitle}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+    label { display: inline-block; padding: 0px 3px; }
+    textarea { width: 20em; height: 8em; }
+    </style>
+</head>
+<body layout:fragment="content">
+	<h1 th:text="${pageTitle}"></h1>
+	<form th:action="@{|/email/send|}" enctype="multipart/form-data" method="POST">
+        <input name="message" type="hidden" th:value="${message}" />
+        
+        <div class="field">
+            <label for="to">Email To</label>
+            <input name="to" type="text"/>
+        </div>
+        
+		<div class="field">
+			<label for="subject">Subject</label>
+			<input name="subject" type="hidden" th:value="${subject}" />
+			<div th:text="${subject}"></div>
+		</div>
+		
+		<div class="field">
+			<label for="custom">Message</label>
+			<textarea name="custom"></textarea>
+		</div>
+		
+		<input type="submit" th:value="Update"/>
+		<a href="/">Back</a>
+		
+	</form>
+</body>
+</html>
