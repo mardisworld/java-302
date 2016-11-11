@@ -191,6 +191,19 @@ public class IndexController {
 
 	
 	
+	@Secured("ROLE_ADMIN")
+	@RequestMapping(value = "/user/search", method = RequestMethod.POST)
+	public String searchUsers(@RequestParam("search") String search, Model model) {
+		log.debug("Searching by " + search);
+		model.addAttribute("users",
+				userRepo.findByLastNameOrFirstNameOrEmailOrTwitterHandleOrFacebookUrlIgnoreCase(
+						search, search, search, search, search));
+		model.addAttribute("search", search);
+		return "listUsers";
+	} //Controller calls methods that act on users through userRepo methods
+
+	
+	
 	@RequestMapping(value = "/email/user", method = RequestMethod.GET)
 	public String prepEmailUser(Model model) { //step6, #35: 
 		String url = "http://localhost:8080/register/";

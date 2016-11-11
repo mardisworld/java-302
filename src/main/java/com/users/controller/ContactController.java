@@ -109,6 +109,18 @@ public class ContactController {
 	
 	
 	@Secured("ROLE_USER")
+	@RequestMapping(value = "/contact/search", method = RequestMethod.POST)
+	public String searchContacts(@RequestParam("search") String search, Model model) {
+		log.debug("Searching by " + search);
+		model.addAttribute("contacts",
+				contactRepo.findByLastNameOrFirstNameOrEmailOrTwitterHandleOrFacebookUrlIgnoreCase(
+						search, search, search, search, search));
+		model.addAttribute("search", search);
+		return "listContacts";
+	} ////Controller calls methods that act on conacts through contactRepo methods
+
+
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/email/contact/{contactId}", method = RequestMethod.GET)
 	public String prepEmailContact(@PathVariable long contactId, Model model) {
 		User user = permissionService.findCurrentUser();

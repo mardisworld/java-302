@@ -6,6 +6,12 @@
 </head>
 <body layout:fragment="content">
 	<h1>Users List</h1>
+	
+	<form th:action="@{|/user/search|}" method="POST"> <!-- Search field -->
+	   <input type="text" placeholder="Search..." name="search" th:value="${search}" />
+	   <input type="submit" th:value="Search"/>
+	</form> 
+	
 	<table class="table">
 		<thead>
 			<tr>
