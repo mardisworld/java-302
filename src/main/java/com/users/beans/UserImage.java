@@ -32,12 +32,6 @@ public class UserImage {
 		this.userId = userId;
 	}
 
-	public UserImage(long userId, String contentType, byte[] image) {
-		this.userId = userId;
-		this.contentType = contentType;
-		this.image = image;
-	}
-
 	@Override
 	public String toString() {
 		return "UserImage [id=" + id + ", userId=" + userId + ", contentType=" + contentType + "]";

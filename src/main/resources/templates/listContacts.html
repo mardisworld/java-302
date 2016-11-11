@@ -4,6 +4,7 @@
     <title>Contacts</title>
     <meta http-equiv=" Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
 <body layout:fragment="content">
 	<h1>Contacts</h1>
 	<table class="table">
@@ -22,10 +23,12 @@
 				<td th:text="${contact.lastName}"></td>
 				<td th:text="${contact.email}"></td>
 				<td th:text="${contact.phoneNumber}"></td>
-				<td><a href="/" th:href="@{|/contact/${contact.id}|}">View Contact</a></td>
+				<td><a href="/" th:href="@{|/contact/${contact.id}|}">View Contact</a></td>		<!--same as Profile  -->
+				<td><a href="/" th:href="@{|/contact/${contact.id}|}">Share</a></td><!-- this doesn't make any sense -->
 			</tr>
 		</tbody>
 	</table>
+	
 	<a href="/contact/create">Create New Contact</a>
 </body>
 </html>

@@ -20,6 +20,11 @@ public class UserRole {
 	private String role;
 
 	protected UserRole() {}
+	
+	protected UserRole(User user, long userId) {	
+		this.userId = user.getId();
+		}
+	
 
 	public UserRole(User user, Role role) {	//alternate constructor given in step5, #26
 		this.userId = user.getId();

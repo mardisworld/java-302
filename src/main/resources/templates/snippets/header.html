@@ -9,17 +9,18 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
+			<!-- 	<span class="icon-bar"></span> Do I need this?-->	
 				</button>
 				<a class="navbar-brand" href="#">Pied Piper, Inc.</a>
 			</div>
 			
 			<div class="navbar-collapse collapse">
 			
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav">			<!-- Changed user to admin on line 21 ${#httpServletRequest.requestURI.contains('admin')?'active':null} not if that was correct, but seems logical -->
 					<li sec:authorize="hasRole('ROLE_ADMIN')" th:class="${#httpServletRequest.requestURI.contains('user')?'active':null}"><a href="#" th:href="@{/users}">Users</a></li>
-					<li sec:authorize="hasRole('ROLE_USER')" th:class="${#httpServletRequest.requestURI.contains('user')?'active':null}"><a href="#" th:href="@{/contacts}">Contacts</a></li>
-					<li sec:authorize="hasRole('ROLE_ADMIN')" th:class="${#httpServletRequest.requestURI.contains('user')?'active':null}"><a href="#" th:href="@{/myprofile}">Admin Profile</a></li>
-					<li sec:authorize="hasRole('ROLE_USER')" th:class="${#httpServletRequest.requestURI.contains('user')?'active':null}"><a href="#" th:href="@{/myprofile}">User Profile</a></li>
+					<li sec:authorize="hasRole('ROLE_USER')" th:class="${#httpServletRequest.requestURI.contains('contact')?'active':null}"><a href="#" th:href="@{/contacts}">Contacts</a></li>
+					<li sec:authorize="isAuthenticated()" th:class="${#httpServletRequest.requestURI.equals('/myprofile')?'active':null}"><a href="#" th:href="@{/myprofile}">My Profile</a></li>
+                    <li sec:authorize="isAuthenticated()" th:class="${#httpServletRequest.requestURI.equals('/email/user')?'active':null}"><a href="#" th:href="@{/email/user}">Invite User</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
@@ -29,8 +30,8 @@
 				<form th:action="@{/logout}" method="post" style="display: none;" id="logoutForm" sec:authorize="isAuthenticated()">
 		            <input type="submit" value="Log Out"/>
 		        </form>
-			</div>
+				</div>
 		</div> <!-- end container -->
-	</div>
+	</div> <!-- end class -->
 </body>
 </html>
